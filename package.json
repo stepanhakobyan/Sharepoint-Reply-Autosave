@@ -1,0 +1,6 @@
+{
+    "devDependencies": {
+        "typescript": "^4.3.2",
+        "webextension-polyfill": "^0.8.0"
+    }
+}

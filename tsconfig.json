@@ -1,0 +1,9 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "esnext",
+    "sourceMap": true,
+    "removeComments": false,
+    "moduleResolution": "classic"
+  }
+}
