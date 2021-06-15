@@ -4,7 +4,7 @@
   "version": "2.0.3",
   "description": "__MSG_extensionDescription__",
   "author": "Stepan Hakobyan",
-  "default_locale": "hy",
+  "default_locale": "en",
   "icons": {
     "16": "icons/Microsoft-SharePoint-2013-icon_16.png",
     "20": "icons/Microsoft-SharePoint-2013-icon_20.png",
