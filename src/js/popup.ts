@@ -5,10 +5,7 @@ window.addEventListener<"load">("load", (_ev) => {
         if (tabs && tabs.length == 1) {
             try {
                 let reviewText: string = await browser.tabs.sendMessage(tabs[0].id, { text: 'getReviewDetails' });
-                if (reviewText === undefined) {
-                    //Այս դեպքը երբեմն առաջանում է Edge-ի մեջ, երբ Tab-ը պոկած է և առանձին պատուհան է սարքած
-                    return;
-                } else {
+                if (reviewText) {
                     console.log(reviewText);
                     let now = new Date();
                     window.localStorage.setItem("previousReviewText0", reviewText);

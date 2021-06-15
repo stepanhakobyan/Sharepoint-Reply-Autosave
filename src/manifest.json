@@ -1,7 +1,7 @@
 {
   "name": "SharePoint Reply Autosave",
   "manifest_version": 2,
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "The extension automatically saves draft replies every 30 seconds, and allows to return them as needed.",
   "author": "Stepan Hakobyan",
   "icons": {

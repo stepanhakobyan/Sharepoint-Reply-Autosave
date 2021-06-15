@@ -23,18 +23,16 @@ browser.runtime.onMessage.addListener(async (msg, sender, sendResponse) => {
 // 30 վայրկյանը մեկ կանչել AutoSave
 const HALF_MINUTE = 30 * 1000;
 setInterval(async (args) => {
-    let reviewArea = findActiveReviewArea();
-    if (reviewArea == null || reviewArea.innerText == "" || reviewArea.innerText.length <= 1) {
-        // Դատարկը չհիշել։ Երբեմն գալիս է մեկ սիմվոլ 8203 (Zero Width Space), դա նույնպես չհիշել։
-        return;
+    let reviewText = getReviewDetails();
+    if (reviewText) {
+        console.log("Saving: " + reviewText);
+        await browser.runtime.sendMessage({ text: "Save", reviewText: reviewText });
     }
-    let reviewText = reviewArea.innerHTML;
-    console.log("Saving: " + reviewText);
-    await browser.runtime.sendMessage({ text: "Save", reviewText: reviewText });
 }, HALF_MINUTE);
 function getReviewDetails() {
     let reviewArea = findActiveReviewArea();
-    if (reviewArea != null) {
+    if (reviewArea != null && reviewArea.innerText != "" && reviewArea.innerText.length > 1 && reviewArea.innerText != "Add a reply") {
+        // Դատարկը չհիշել։ Երբեմն գալիս է մեկ սիմվոլ 8203 (Zero Width Space), դա նույնպես չհիշել։ Չհիշել նաև նախնական լրացված «Add a reply»։
         return reviewArea.innerHTML;
     }
     return null;
