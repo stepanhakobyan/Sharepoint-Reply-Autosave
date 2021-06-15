@@ -1,4 +1,6 @@
 window.addEventListener<"load">("load", (_ev) => {
+    localizeExtension();
+
     let save = document.getElementById("save0") as HTMLButtonElement;
     save.addEventListener<"click">("click", async (_ev) => {
         let tabs = await browser.tabs.query({ currentWindow: true, active: true });
@@ -71,7 +73,7 @@ window.addEventListener<"load">("load", (_ev) => {
             window.localStorage.removeItem(`previousReviewText${i}`);
             window.localStorage.removeItem(`previousReviewTime${i}`);
             let timeSpan = document.getElementById(`t${i}`) as HTMLSpanElement;
-            timeSpan.textContent = "լրացված չէ";
+            timeSpan.textContent = browser.i18n.getMessage("popupReplyNotSaved");
         }
     });
 
@@ -103,3 +105,16 @@ window.addEventListener<"load">("load", (_ev) => {
         }
     });
 });
+
+function localizeExtension() {
+    for (let i = 0; i <= 5; i++) {
+        document.getElementById(`t${i}`).textContent = browser.i18n.getMessage("popupReplyNotSaved");
+        document.getElementById(`preview${i}`).textContent = browser.i18n.getMessage("popupViewReply");
+        document.getElementById(`restoreText${i}`).textContent = browser.i18n.getMessage("popupInjectReply");
+    }
+    document.querySelector(".content > h4:nth-child(1)").textContent = browser.i18n.getMessage("popupManuallySavedReplyTitle");
+    document.querySelector(".content > h4:nth-child(4)").textContent = browser.i18n.getMessage("popupAutoSavedRepliesTitle");
+    document.getElementById("save0").textContent = browser.i18n.getMessage("popupManuallySave");
+    document.getElementById("clearAll").textContent = browser.i18n.getMessage("popupClearAutoSavedReplies");
+    document.getElementById("previewRestore").textContent = browser.i18n.getMessage("popupInjectReply");
+}

@@ -1,0 +1,39 @@
+{
+  "extensionName": {
+    "message": "SharePoint-ի պատասխանների ինքնապահպանում",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Այս ընդլայնումը ինքնաշխատ պահպանում է սևագիր պատասխանները ամեն 30 վայրկայնը մեկ, և թույլ է տալիս վերականգնել դրանց ըստ անհրաժեշտության։",
+    "description": "Description of the extension."
+  },
+
+  "popupManuallySavedReplyTitle": {
+    "message": "Պահպանված գրառում",
+    "description": "Manually saved reply title."
+  },
+  "popupAutoSavedRepliesTitle": {
+    "message": "Վերջին ինքնապահպանված գրառումները",
+    "description": ""
+  },
+  "popupManuallySave": {
+    "message": "Պահպանել",
+    "description": ""
+  },
+  "popupReplyNotSaved": {
+    "message": "լրացված չէ",
+    "description": ""
+  },
+  "popupViewReply": {
+    "message": "Դիտել",
+    "description": ""
+  },
+  "popupInjectReply": {
+    "message": "Տեղադրել",
+    "description": ""
+  },
+  "popupClearAutoSavedReplies": {
+    "message": "Ջնջել բոլորը",
+    "description": ""
+  }
+}

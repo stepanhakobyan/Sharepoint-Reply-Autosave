@@ -1,0 +1,39 @@
+{
+  "extensionName": {
+    "message": "SharePoint Reply Autosave",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "The extension automatically saves draft replies every 30 seconds, and allows to return them as needed.",
+    "description": "Description of the extension."
+  },
+
+  "popupManuallySavedReplyTitle": {
+    "message": "Saved Reply",
+    "description": "Manually saved reply title."
+  },
+  "popupAutoSavedRepliesTitle": {
+    "message": "Latest Autosaved Replies",
+    "description": ""
+  },
+  "popupManuallySave": {
+    "message": "Save",
+    "description": ""
+  },
+  "popupReplyNotSaved": {
+    "message": "empty",
+    "description": ""
+  },
+  "popupViewReply": {
+    "message": "View",
+    "description": ""
+  },
+  "popupInjectReply": {
+    "message": "Insert",
+    "description": ""
+  },
+  "popupClearAutoSavedReplies": {
+    "message": "Clear All",
+    "description": ""
+  }
+}
