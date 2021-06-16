@@ -1,5 +1,5 @@
-window.addEventListener("load", (_ev) => {
-    localizeExtension();
+window.addEventListener("load", async (_ev) => {
+    await localizeExtension();
     let save = document.getElementById("save0");
     save.addEventListener("click", async (_ev) => {
         let tabs = await browser.tabs.query({ currentWindow: true, active: true });
@@ -66,12 +66,14 @@ window.addEventListener("load", (_ev) => {
         });
     }
     let clearAll = document.getElementById("clearAll");
-    clearAll.addEventListener("click", (ev) => {
+    clearAll.addEventListener("click", async (ev) => {
+        let messages = await getMessages();
         for (let i = 1; i <= 5; i++) {
             window.localStorage.removeItem(`previousReviewText${i}`);
             window.localStorage.removeItem(`previousReviewTime${i}`);
             let timeSpan = document.getElementById(`t${i}`);
-            timeSpan.textContent = browser.i18n.getMessage("popupReplyNotSaved");
+            //timeSpan.textContent = browser.i18n.getMessage("popupReplyNotSaved");
+            timeSpan.textContent = messages.popupReplyNotSaved.message;
         }
     });
     let closePreview = document.getElementById("closePreview");
@@ -103,7 +105,18 @@ window.addEventListener("load", (_ev) => {
             console.log("no tab");
         }
     });
+    let userLang = document.getElementById("lang");
+    let userSelectedLang = window.localStorage.getItem("userSelectedLang");
+    if (userSelectedLang) {
+        userLang.value = userSelectedLang.substring(0, 2);
+    }
+    userLang.addEventListener("change", async (ev) => {
+        window.localStorage.setItem("userSelectedLang", userLang.value);
+        await localizeExtension();
+    });
 });
+/*
+// i18n localization implementation
 function localizeExtension() {
     for (let i = 0; i <= 5; i++) {
         document.getElementById(`t${i}`).textContent = browser.i18n.getMessage("popupReplyNotSaved");
@@ -115,5 +128,36 @@ function localizeExtension() {
     document.getElementById("save0").textContent = browser.i18n.getMessage("popupManuallySave");
     document.getElementById("clearAll").textContent = browser.i18n.getMessage("popupClearAutoSavedReplies");
     document.getElementById("previewRestore").textContent = browser.i18n.getMessage("popupInjectReply");
+}
+*/
+async function localizeExtension() {
+    let messages = await getMessages();
+    for (let i = 0; i <= 5; i++) {
+        let timeSpan = document.getElementById(`t${i}`);
+        if (Number.isNaN(Number.parseFloat(timeSpan.textContent.substring(0, 1)))) {
+            timeSpan.textContent = messages.popupReplyNotSaved.message;
+        }
+        document.getElementById(`preview${i}`).textContent = messages.popupViewReply.message;
+        document.getElementById(`restoreText${i}`).textContent = messages.popupInjectReply.message;
+    }
+    document.querySelector(".content > h4:nth-child(2)").textContent = messages.popupManuallySavedReplyTitle.message;
+    document.querySelector(".content > h4:nth-child(5)").textContent = messages.popupAutoSavedRepliesTitle.message;
+    document.getElementById("save0").textContent = messages.popupManuallySave.message;
+    document.getElementById("clearAll").textContent = messages.popupClearAutoSavedReplies.message;
+    document.getElementById("previewRestore").textContent = messages.popupInjectReply.message;
+}
+async function getMessages() {
+    let lang2;
+    let userSelectedLang = window.localStorage.getItem("userSelectedLang");
+    if (userSelectedLang) {
+        lang2 = userSelectedLang.substring(0, 2);
+    }
+    else {
+        lang2 = "hy";
+        //lang2 = navigator.language.substring(0, 2);
+    }
+    let response = await fetch(`_locales/${lang2}/messages.json`, { method: 'GET' });
+    let json = response.json();
+    return json;
 }
 //# sourceMappingURL=popup.js.map
