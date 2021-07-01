@@ -1,5 +1,8 @@
 body {
-    background-color: #ebf3ff; /* #f6f6f6   #e8e8e8*/
+    background-color: #ebf3ff; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+    overflow: hidden;
 }
 .content {
     width: 300px;
@@ -13,7 +16,7 @@ textarea {
 }
 
 #previewDiv {
-    background-color: #83b0ec; /* #83b0ec darkgrey */
+    background-color: #ebf3ff; 
     position: absolute;
     left: 0px;
     top: 0px;
@@ -24,16 +27,103 @@ textarea {
 #previewHead {
     margin: 10px;
 }
-#closePreview {
-    
-}
 #previewRestore {
     float: right;
 }
 #previewBody {
     margin: 10px;
     background-color: white;
-    overflow: scroll;
+    overflow: auto;
     max-height: 470px;
-    min-height: 470px;
+    min-height: 470px;  
+    border: 1px solid black;
+}
+span.time {
+    font-size: 9pt;
+    font-style: italic;
+}
+footer {
+    padding-top: 110px;
+}
+#options {
+    float: right;
+}
+.option-label {
+    margin-left: 10px;
+}
+
+button { 
+    border-width: 0px; 
+    background-color: #007ACC;
+    color: white;
+}
+button {
+    padding: 5px 10px;
+}
+button:hover {
+    background-color: #0062A3;
+}
+button:active {
+    background-color: #0062A3;
+}
+button:active {
+    outline-offset: 2px;
+    outline: 1px solid black;
+}
+button:focus {
+    background-color: #0062A3;
+    outline-offset: 2px;
+    outline: 1px solid black;
+}
+
+select.option {
+    color: black;
+    border: 1px solid #007ACC; 
+    background-color: #ebf3ff; 
+}
+select.option:focus {
+    outline-offset: 2px;
+    outline: 1px solid black;
+}
+
+
+
+html[theme=dark] {
+    color: white;
+}
+
+html[theme=dark] body {
+    background-color: #21252B;
+}
+html[theme=dark] button { 
+    background-color: #4D78CC;
+}
+html[theme=dark] button:hover {
+    background-color: #6087CF;
+}
+html[theme=dark] button:active {
+    background-color: #6087CF;
+}
+html[theme=dark] button:active {
+    outline: 1px solid #6087CF;
+}
+html[theme=dark] button:focus {
+    background-color: #6087CF;
+    outline: 1px solid #6087CF;
+}
+html[theme=dark] select.option {
+    border: 1px solid #4D78CC; 
+    background-color: #21252B; 
+    color: white;
+}
+html[theme=dark] select.option:focus {
+    outline: 1px solid #6087CF;
+}
+
+html[theme=dark] #previewDiv {
+    background-color: #21252B; 
+}
+html[theme=dark] #previewBody {
+    background-color: black;
+    border: 1px solid gray;
 }

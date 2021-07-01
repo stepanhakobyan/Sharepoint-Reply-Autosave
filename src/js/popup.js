@@ -1,7 +1,8 @@
 window.addEventListener("load", async (_ev) => {
     await localizeExtension();
+    colorizeTheme();
     let save = document.getElementById("save0");
-    save.addEventListener("click", async (_ev) => {
+    save.addEventListener("click", async () => {
         let tabs = await browser.tabs.query({ currentWindow: true, active: true });
         if (tabs && tabs.length == 1) {
             try {
@@ -33,7 +34,7 @@ window.addEventListener("load", async (_ev) => {
             timeSpan.textContent = time;
         }
         let restore = document.getElementById(`restoreText${i}`);
-        restore.addEventListener("click", async (ev) => {
+        restore.addEventListener("click", async () => {
             let tabs = await browser.tabs.query({ currentWindow: true, active: true });
             if (tabs && tabs.length == 1) {
                 try {
@@ -57,7 +58,7 @@ window.addEventListener("load", async (_ev) => {
             }
         });
         let preview = document.getElementById(`preview${i}`);
-        preview.addEventListener("click", (ev) => {
+        preview.addEventListener("click", () => {
             let reviewText = window.localStorage.getItem(`previousReviewText${i}`);
             let previewBody = document.getElementById("previewBody");
             previewBody.innerHTML = reviewText;
@@ -66,7 +67,7 @@ window.addEventListener("load", async (_ev) => {
         });
     }
     let clearAll = document.getElementById("clearAll");
-    clearAll.addEventListener("click", async (ev) => {
+    clearAll.addEventListener("click", async () => {
         let messages = await getMessages();
         for (let i = 1; i <= 5; i++) {
             window.localStorage.removeItem(`previousReviewText${i}`);
@@ -77,12 +78,12 @@ window.addEventListener("load", async (_ev) => {
         }
     });
     let closePreview = document.getElementById("closePreview");
-    closePreview.addEventListener("click", (ev) => {
+    closePreview.addEventListener("click", () => {
         let previewDiv = document.getElementById("previewDiv");
         previewDiv.style.visibility = "collapse";
     });
     let previewRestore = document.getElementById("previewRestore");
-    previewRestore.addEventListener("click", async (ev) => {
+    previewRestore.addEventListener("click", async () => {
         let tabs = await browser.tabs.query({ currentWindow: true, active: true });
         if (tabs && tabs.length == 1) {
             try {
@@ -110,9 +111,18 @@ window.addEventListener("load", async (_ev) => {
     if (userSelectedLang) {
         userLang.value = userSelectedLang.substring(0, 2);
     }
-    userLang.addEventListener("change", async (ev) => {
+    userLang.addEventListener("change", () => {
         window.localStorage.setItem("userSelectedLang", userLang.value);
-        await localizeExtension();
+        window.location.reload();
+    });
+    let themeSwitcher = document.getElementById("theme-switch");
+    let currentTheme = window.localStorage.getItem("theme");
+    if (currentTheme && currentTheme == "dark") {
+        themeSwitcher.value = currentTheme;
+    }
+    themeSwitcher.addEventListener("change", () => {
+        window.localStorage.setItem("theme", themeSwitcher.value);
+        window.location.reload();
     });
 });
 /*
@@ -134,17 +144,22 @@ async function localizeExtension() {
     let messages = await getMessages();
     for (let i = 0; i <= 5; i++) {
         let timeSpan = document.getElementById(`t${i}`);
-        if (Number.isNaN(Number.parseFloat(timeSpan.textContent.substring(0, 1)))) {
-            timeSpan.textContent = messages.popupReplyNotSaved.message;
-        }
+        //if (Number.isNaN(Number.parseFloat(timeSpan.textContent.substring(0,1)))) {
+        timeSpan.textContent = messages.popupReplyNotSaved.message;
+        //}
         document.getElementById(`preview${i}`).textContent = messages.popupViewReply.message;
         document.getElementById(`restoreText${i}`).textContent = messages.popupInjectReply.message;
     }
-    document.querySelector(".content > h4:nth-child(2)").textContent = messages.popupManuallySavedReplyTitle.message;
-    document.querySelector(".content > h4:nth-child(5)").textContent = messages.popupAutoSavedRepliesTitle.message;
+    document.querySelectorAll("h4")[0].textContent = messages.popupManuallySavedReplyTitle.message;
+    document.querySelectorAll("h4")[1].textContent = messages.popupAutoSavedRepliesTitle.message;
     document.getElementById("save0").textContent = messages.popupManuallySave.message;
     document.getElementById("clearAll").textContent = messages.popupClearAutoSavedReplies.message;
     document.getElementById("previewRestore").textContent = messages.popupInjectReply.message;
+    document.querySelectorAll(".option-label")[0].textContent = messages.popupTheme.message;
+    document.querySelectorAll(".option-label")[1].textContent = messages.popupLanguage.message;
+    let options = document.querySelectorAll("#theme-switch option");
+    options[0].textContent = messages.popupThemeLight.message;
+    options[1].textContent = messages.popupThemeDark.message;
 }
 async function getMessages() {
     let lang2;
@@ -159,5 +174,13 @@ async function getMessages() {
     let response = await fetch(`_locales/${lang2}/messages.json`, { method: 'GET' });
     let json = response.json();
     return json;
+}
+function colorizeTheme() {
+    let currentTheme = window.localStorage.getItem("theme");
+    let themeSwitcher = document.getElementById("theme-switch");
+    if (currentTheme && currentTheme == "dark") {
+        document.head.parentElement.setAttribute("theme", "dark");
+        themeSwitcher.value = currentTheme;
+    }
 }
 //# sourceMappingURL=popup.js.map

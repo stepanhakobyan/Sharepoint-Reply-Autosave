@@ -35,5 +35,21 @@
   "popupClearAutoSavedReplies": {
     "message": "Ջնջել բոլորը",
     "description": ""
+  },
+  "popupTheme": {
+    "message": "Ոճ",
+    "description": ""
+  },
+  "popupThemeLight": {
+    "message": "Բաց",
+    "description": ""
+  },
+  "popupThemeDark": {
+    "message": "Մուգ",
+    "description": ""
+  },
+  "popupLanguage": {
+    "message": "Լեզու",
+    "description": ""
   }
 }

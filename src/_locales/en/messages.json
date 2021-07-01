@@ -35,5 +35,21 @@
   "popupClearAutoSavedReplies": {
     "message": "Clear All",
     "description": ""
+  },
+  "popupTheme": {
+    "message": "Theme",
+    "description": ""
+  },
+  "popupThemeLight": {
+    "message": "Light",
+    "description": ""
+  },
+  "popupThemeDark": {
+    "message": "Dark",
+    "description": ""
+  },
+  "popupLanguage": {
+    "message": "Language",
+    "description": ""
   }
 }

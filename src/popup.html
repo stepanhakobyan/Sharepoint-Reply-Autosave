@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- <html theme="dark"> -->
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -9,47 +10,58 @@
 </head>
 <body>
     <div class="content">
-        <select style="float: right;" id="lang">
-            <option value="hy">🇦🇲</option>
-            <option value="en">🇬🇧</option>
-        </select>
         <h4>Պահպանված գրառում</h4>
         <p>
             <button id="save0">Պահպանել</button>
             <br />
             <br />
-            <span id="t0">լրացված չէ</span>
+            <span class="time" id="t0">լրացված չէ</span>
             <button id="preview0">Դիտել</button>
             <button id="restoreText0">Տեղադրել</button>
         </p>
         <hr />
         <h4>Վերջին ինքնապահպանված գրառումները</h4>
         <p>
-            <span id="t1">լրացված չէ</span>
+            <span class="time" id="t1">լրացված չէ</span>
             <button id="preview1">Դիտել</button>
             <button id="restoreText1">Տեղադրել</button>
         </p>
         <p>
-            <span id="t2">լրացված չէ</span>
+            <span class="time" id="t2">լրացված չէ</span>
             <button id="preview2">Դիտել</button>
             <button id="restoreText2">Տեղադրել</button>
         </p>
         <p>
-            <span id="t3">լրացված չէ</span>
+            <span class="time" id="t3">լրացված չէ</span>
             <button id="preview3">Դիտել</button>
             <button id="restoreText3">Տեղադրել</button>
         </p>
         <p>
-            <span id="t4">լրացված չէ</span>
+            <span class="time" id="t4">լրացված չէ</span>
             <button id="preview4">Դիտել</button>
             <button id="restoreText4">Տեղադրել</button>
         </p>
         <p>
-            <span id="t5">լրացված չէ</span>
+            <span class="time" id="t5">լրացված չէ</span>
             <button id="preview5">Դիտել</button>
             <button id="restoreText5">Տեղադրել</button>
         </p>
         <button id="clearAll">Ջնջել բոլորը</button>
+        <footer>
+            <hr />
+            <div id="options">
+                <span class="option-label">Ոճ</span>
+                <select id="theme-switch" class="option">
+                    <option value="light">Բաց</option>
+                    <option value="dark">Մուգ</option>
+                </select>
+                <span class="option-label">Լեզու</span>
+                <select id="lang" class="option">
+                    <option value="hy">🇦🇲</option>
+                    <option value="en">🇬🇧</option>
+                </select>
+            </div>
+        </footer>
     </div>
     <div id="previewDiv">
         <div id="previewHead">
